@@ -12,10 +12,23 @@ fun <T> List<T>.printAll() {
     this.forEach { println(it) }
 }
 
+fun Any?.print() {
+    println(this)
+}
+
 fun <T : Number> List<T>.toInts() = map { it.toInt() }
 
 fun <T : Number> List<T>.toDoubles() = map { it.toDouble() }
 
+operator fun <T> List<T>.get(indicies: IntRange) = slice(indicies)
+
+// https://github.com/tginsberg/advent-2018-kotlin
+fun <T> List<T>.toInfiniteSequence() = sequence {
+    if (this@toInfiniteSequence.isEmpty())
+        return@sequence
+    while (true)
+        yieldAll(this@toInfiniteSequence)
+}
 
 
 //////////////////////////////
@@ -56,3 +69,7 @@ fun <T> mutableListOf4D(): MutableList4D<T> = ArrayList(ArrayList(ArrayList(Arra
 fun <T> mutableListOf2D(size: Int, default: T): MutableList2D<T> = MutableList(size) { MutableList(size) { default } }
 fun <T> mutableListOf3D(size: Int, default: T): MutableList3D<T> = MutableList(size) { MutableList(size) { MutableList(size) { default }}}
 fun <T> mutableListOf4D(size: Int, default: T): MutableList4D<T> = MutableList(size) { MutableList(size) { MutableList(size) { MutableList(size) { default }}}}
+
+operator fun <T> List2D<T>.get(i: IntRange, j: IntRange) = slice(i).map { it.slice(j) }
+operator fun <T> List3D<T>.get(i: IntRange, j: IntRange, k: IntRange) = slice(i).map { it.slice(j).map { it.slice(k) } }
+operator fun <T> List4D<T>.get(i: IntRange, j: IntRange, k: IntRange, l: IntRange) = slice(i).map { it.slice(j).map { it.slice(k).map { it.slice(l) } } }
