@@ -6,11 +6,30 @@ object Day1 {
     private val input = getTextResource("/day01")
 
     fun part1(): Any? {
-        return -1
+        var freq = 0
+
+        input.split("\r\n").forEach { line ->
+            var t = line.substring(1, line.length).toInt()
+            if (line[0] == '-') t *= -1
+            freq += t
+        }
+
+        return freq
     }
 
     fun part2(): Any? {
-        return -1
+        var freq = 0
+        val freqs = mutableSetOf<Int>()
+
+        while (true) {
+            input.split("\r\n").forEach { line ->
+                var t = line.substring(1, line.length).toInt()
+                if (line[0] == '-') t *= -1
+                freq += t
+                if (!freqs.add(freq))
+                    return freq
+            }
+        }
     }
 }
 
