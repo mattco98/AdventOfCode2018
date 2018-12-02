@@ -3,14 +3,22 @@ package me.mattco.daysOptimal
 import me.mattco.utils.ResourceLoader.getTextResource
 
 object Day2 {
-    private val input = getTextResource("/day02")
+    private val input = getTextResource("/day02").split("\r\n")
 
-    fun part1(): Any? {
-        return -1
+    fun part1() = input.map {
+        it.groupingBy { it }.eachCount().let { counts ->
+            counts.containsValue(2) to counts.containsValue(3)
+        }
+    }.run {
+        count { p -> p.first } * count { p -> p.second }
     }
 
-    fun part2(): Any? {
-        return -1
+    fun part2() = input.run {
+        filter { id ->
+            any { it.zip(id).count { it.first != it.second } == 1 }
+        }.run {
+            this[0].filterIndexed { i, c -> this[1][i] == c }
+        }
     }
 }
 
