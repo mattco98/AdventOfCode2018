@@ -22,13 +22,7 @@ fun <T : Number> List<T>.toDoubles() = map { it.toDouble() }
 
 operator fun <T> List<T>.get(indicies: IntRange) = slice(indicies)
 
-// https://github.com/tginsberg/advent-2018-kotlin
-fun <T> List<T>.toInfiniteSequence() = sequence {
-    if (this@toInfiniteSequence.isEmpty())
-        return@sequence
-    while (true)
-        yieldAll(this@toInfiniteSequence)
-}
+fun <T> Iterable<T>.cycle() = generateSequence { this }.flatten()
 
 
 //////////////////////////////
