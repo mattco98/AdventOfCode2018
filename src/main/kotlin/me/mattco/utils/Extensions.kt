@@ -1,5 +1,24 @@
 package me.mattco.utils
 
+///////////
+/// Any ///
+///////////
+fun Any?.print() {
+    println(this)
+}
+
+////////////
+/// Char ///
+////////////
+fun Char.lower() = this.toLowerCase()
+fun Char.upper() = this.toUpperCase()
+
+//////////////
+/// String ///
+//////////////
+fun String.lower() = this.toLowerCase()
+fun String.upper() = this.toUpperCase()
+
 fun String.with(index: Int, value: Char): String {
     val newStr = if (index < length) this else {
         this + " ".repeat(index - length + 1)
@@ -10,41 +29,32 @@ fun String.with(index: Int, value: Char): String {
 
 fun String.removeAll(ch: Char) = this.replace(ch.toString(), "")
 
-fun String.lower() = this.toLowerCase()
-
-fun String.upper() = this.toUpperCase()
-
-fun Char.lower() = this.toLowerCase()
-
-fun Char.upper() = this.toUpperCase()
-
-fun <T> Collection<T>.printAll() {
-    this.forEach { println(it) }
-}
-
-fun Any?.print() {
-    println(this)
-}
-
 fun <T> String.reduce(default: T, fn: (T, Char) -> T): T {
     var v = default
     this.forEach { v = fn(v, it) }
     return v
 }
 
-fun <T, R> Collection<T>.reduce(default: R, fn: (R, T) -> R): R {
+/////////////////
+/// Iterables ///
+/////////////////
+fun <T> Iterable<T>.printAll() {
+    this.forEach { println(it) }
+}
+
+fun <T, R> Iterable<T>.reduce(default: R, fn: (R, T) -> R): R {
     var v = default
     this.forEach { v = fn(v, it) }
     return v
 }
+
+fun <T> Iterable<T>.cycle() = generateSequence { this }.flatten()
 
 fun <T : Number> List<T>.toInts() = map { it.toInt() }
 
 fun <T : Number> List<T>.toDoubles() = map { it.toDouble() }
 
 operator fun <T> List<T>.get(indices: IntRange) = slice(indices)
-
-fun <T> Iterable<T>.cycle() = generateSequence { this }.flatten()
 
 
 //////////////////////////////
