@@ -8,9 +8,11 @@ fun String.with(index: Int, value: Char): String {
     return newStr.substring(0, index) + value + newStr.substring(index + 1, newStr.length)
 }
 
-fun <T> List<T>.printAll() {
+fun <T> Collection<T>.printAll() {
     this.forEach { println(it) }
 }
+
+
 
 fun Any?.print() {
     println(this)
