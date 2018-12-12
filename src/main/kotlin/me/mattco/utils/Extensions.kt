@@ -35,6 +35,8 @@ fun <T> String.reduce(default: T, fn: (T, Char) -> T): T {
     return v
 }
 
+operator fun String.get(range: IntRange) = substring(range)
+
 /////////////////
 /// Iterables ///
 /////////////////
@@ -50,9 +52,9 @@ fun <T, R> Iterable<T>.reduce(default: R, fn: (R, T) -> R): R {
 
 fun <T> Iterable<T>.cycle() = generateSequence { this }.flatten()
 
-fun <T : Number> List<T>.toInts() = map { it.toInt() }
+fun <T : Number> Iterable<T>.toInts() = map { it.toInt() }
 
-fun <T : Number> List<T>.toDoubles() = map { it.toDouble() }
+fun <T : Number> Iterable<T>.toDoubles() = map { it.toDouble() }
 
 operator fun <T> List<T>.get(indices: IntRange) = slice(indices)
 
