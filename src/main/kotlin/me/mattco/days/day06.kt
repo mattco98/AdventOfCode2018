@@ -3,13 +3,17 @@ package me.mattco.days
 import me.mattco.utils.ResourceLoader.getTextResource
 
 object Day6 {
-    private val input = getTextResource("/day06")
+    private val input = getTextResource("/day06").split(System.lineSeparator())
 
     fun part1(): Any? {
+
+
         return -1
     }
 
     fun part2(): Any? {
+
+
         return -1
     }
 }
