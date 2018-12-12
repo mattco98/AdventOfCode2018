@@ -5,7 +5,6 @@ import me.mattco.utils.lower
 import me.mattco.utils.reduce
 import me.mattco.utils.removeAll
 import me.mattco.utils.get
-import java.util.*
 
 object Day5 {
     private val input = getTextResource("/day05")
@@ -27,9 +26,7 @@ object Day5 {
 }
 
 fun main() {
-    val start = Date().time
     println("=== Day 5 ===")
     println("Part 1: ${Day5.part1()}")
     println("Part 2: ${Day5.part2()}")
-    println((Date().time - start).toDouble() / 1000.0)
 }
